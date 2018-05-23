@@ -1,0 +1,3 @@
+app client name  - photo-explore
+
+valid redirect URI - http://www.tmrnd.com.my/contact-us

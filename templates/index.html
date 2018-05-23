@@ -1,0 +1,160 @@
+{% extends "base_layout.html" %} {% block title %}Welcome{% endblock %} 
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('serveStaticResource', resource='css/timeline.css') }}">
+    <link rel="stylesheet" href="{{ url_for('serveStaticResource', resource='css/morris.css') }}">
+	<link rel="stylesheet" href="{{ url_for('serveStaticResource', resource='css/jqcloud.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('serveStaticResource', resource='css/leaflet.css') }}" />
+{% endblock %} 
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <!-- <h1 class="page-header">DASHBOARD <i class="fa-link" id="conn-status" style="color:green"></i></h1> -->
+		<h1 class="page-header">DASHBOARD <div id="speed" style="display:inline-block;float:right;margin-bottom:10px;"></div></h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-twitter fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge" id="twit-count">26</div>
+                        <div>New tweets!</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-facebook fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge" id="post-count">12</div>
+                        <div>New Posts!</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-instagram fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">124</div>
+                        <div>New Grams!</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-google fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">13</div>
+                        <div>News !</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- /.row -->
+
+<div class="row">
+	<div class="col-lg-12">
+		 <div id="mapid" style="height: 300px;"></div>
+	</div>
+</div>
+<!-- /.row -->
+
+
+
+<div class="row">
+    <div class="col-lg-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-bar-chart-o fa-fw"></i> Five recent tweets
+                
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+			    <ul class="media-list" id='recent-tweets'>
+					Now empty
+				</ul>			
+            </div>
+            <!-- /.panel-body -->
+        </div>
+    </div>
+    <!-- /.col-lg-8 -->
+    <div class="col-lg-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-bell fa-fw"></i> Word-Cloud
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div id='wordcloud'></div>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+    </div>
+    <!-- /.col-lg-4 -->
+</div>
+<!-- /.row -->{% endblock %}
+{% block js %}
+    {{ super() }}
+	<script src="{{ url_for('serveStaticResource', resource='js/jqcloud.min.js')}}"></script>
+	<script src="{{ url_for('serveStaticResource', resource='js/gcharts.js')}}"></script>
+	<script src="{{ url_for('serveStaticResource', resource='js/leaflet.js')}}"></script>
+    <script src="{{ url_for('serveStaticResource', resource='js/raphael-min.js')}}"></script>
+    <script src="{{ url_for('serveStaticResource', resource='js/morris.min.js')}}"></script>
+	<script src="{{ url_for('serveStaticResource', resource='js/socket.io.min.js')}}"></script>
+	<script src="{{ url_for('serveStaticResource', resource='js/rcv.js')}}"></script>
+{% endblock %}
